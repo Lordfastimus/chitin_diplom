@@ -19,13 +19,7 @@
                 </StackPanel>
                 <Button Content="Сохранить результаты" Command="{Binding SaveResultCommand}"/>
             </StackPanel>
-            <DataGrid Margin="0,0,8,0" ItemsSource="{Binding FilesForAnalyse}" AutoGenerateColumns="False" CanUserDeleteRows="False" CanUserAddRows="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Name}" Header="Имя файла"/>
-                    <DataGridTextColumn Binding="{Binding MD5}" Header="MD5"/>
-                    <DataGridTextColumn Binding="{Binding Size}" Header="Размер"/>
-                </DataGrid.Columns>
-            </DataGrid>
+            <local:TableOfAnalyseFiles Margin="0,0,8,0" ItemsSource="{Binding FilesForAnalyse}"/>
         </DockPanel>
     </Grid>
 </UserControl>

@@ -99,7 +99,7 @@ namespace Chitin.ViewModels
                 {
                     ProgrammName = ProgrammName,
                     AnalyseDate = DateTime.Now,
-                    AnlyseFiles = FilesForAnalyse.ToList()
+                    AnlyseFiles = FilesForAnalyse
                 };
 
                 dialog.FileName = Path.Combine(FileHelper.GetAnalyseFolder(), fileInfo.GetFileName());

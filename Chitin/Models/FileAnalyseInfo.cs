@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 namespace Chitin.Models
 {
     [Serializable]
-    public class FileAnalyseInfo : INotifyPropertyChanged
+    public class FileAnalyseInfo : NotifyPropertyChengedBase
     {
         private string name;
         private string mD5;
@@ -39,14 +39,6 @@ namespace Chitin.Models
                 size = value;
                 OnPropertyChanged(nameof(Size));
             }
-        }
-
-        [field: NonSerializedAttribute()]
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

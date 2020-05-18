@@ -6,26 +6,17 @@
              xmlns:local="clr-namespace:Chitin.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Сравнить результаты" Command="{Binding CompareResultsCommand}"/>
+        </StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0"  Text="Имя программы:"/>
-            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding AnalyzeInfo_1.ProgrammName}"/>
-            <TextBlock Grid.Row="0" Grid.Column="0"  Text="Дата анализа:"/>
-            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding AnalyzeInfo_1.AnalyseDate}"/>
+            <local:FileForAnalyse SelectedFile="{Binding AnalyzeInfo_1}" LoadCommand="{Binding LoadCommand}"/>
+            <local:FileForAnalyse Grid.Column="1" SelectedFile="{Binding AnalyzeInfo_2}" LoadCommand="{Binding LoadCommand}"/>
         </Grid>
-        
-        
-    </StackPanel>
+    </DockPanel>    
 </UserControl>

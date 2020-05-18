@@ -58,9 +58,13 @@
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Models\AnalyseInfo.cs" />
     <Compile Include="Models\FileAnalyseInfo.cs" />
+    <Compile Include="Models\NotifyPropertyChengedBase.cs" />
     <Compile Include="ViewModels\AnalizeStepViewModel.cs" />
     <Compile Include="ViewModels\ComparationViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="Views\TableOfAnalyseFiles.xaml.cs">
+      <DependentUpon>TableOfAnalyseFiles.xaml</DependentUpon>
+    </Compile>
     <Page Include="ResourceDictionaries\MergedResourceDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -74,6 +78,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ComparationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FileForAnalyse.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -91,10 +99,17 @@
     <Compile Include="Views\ComparationView.xaml.cs">
       <DependentUpon>ComparationView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\FileForAnalyse.xaml.cs">
+      <DependentUpon>FileForAnalyse.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\TableOfAnalyseFiles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
