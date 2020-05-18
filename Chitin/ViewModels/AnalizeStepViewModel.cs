@@ -49,9 +49,11 @@ namespace Chitin.ViewModels
         private void SelectFilesFromDir()
         {
             FilesForAnalyse.Clear();
+            var rootPathLength = Directory.GetParent(SelectedFolderPath).FullName.Length;
+            
             foreach (var fileName in FileHelper.GetFileNamesForDirectory(SelectedFolderPath))
             {
-                FilesForAnalyse.Add(new FileAnalyseInfo() { Name = fileName });
+                FilesForAnalyse.Add(new FileAnalyseInfo() { FullName = fileName, Name = fileName.Substring(rootPathLength)});
             }
         }
 
@@ -66,9 +68,9 @@ namespace Chitin.ViewModels
         public RelayCommand CalculateMD5Command =>
            new RelayCommand(obj =>
            {
-               Parallel.ForEach(FilesForAnalyse, new System.Action<FileAnalyseInfo>(file =>
+               Parallel.ForEach(FilesForAnalyse, new Action<FileAnalyseInfo>(file =>
                {
-                   var fileInfo = new FileInfo(file.Name);
+                   var fileInfo = new FileInfo(file.FullName);
                    file.Size = fileInfo.Length;
                    var fileBody = File.ReadAllBytes(fileInfo.FullName);
                    file.MD5 = CryptoHelper.GetHashMD5(fileBody);

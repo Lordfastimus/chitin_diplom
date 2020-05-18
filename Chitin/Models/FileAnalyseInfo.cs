@@ -1,15 +1,17 @@
-﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using ChitinLib;
+using System;
 
 namespace Chitin.Models
 {
     [Serializable]
-    public class FileAnalyseInfo : NotifyPropertyChengedBase
+    public class FileAnalyseInfo : NotifyPropertyChengedBase, IFileAnalyzeInfo
     {
         private string name;
         private string mD5;
         private long size;
+
+        [field: NonSerialized()]
+        public string FullName { get; set; }
 
         public string Name
         {

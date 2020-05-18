@@ -6,7 +6,7 @@ namespace Chitin.Models
 {
     public class NotifyPropertyChengedBase: INotifyPropertyChanged
     {
-        [field: NonSerializedAttribute()]
+        [field: NonSerialized()]
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged([CallerMemberName]string prop = "")

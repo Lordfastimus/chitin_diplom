@@ -1,7 +1,7 @@
 ﻿using Chitin.Common;
 using Chitin.Models;
 using ChitinLib;
-using System.Collections.Generic;
+using System;
 using System.Windows;
 
 namespace Chitin.ViewModels
@@ -36,6 +36,20 @@ namespace Chitin.ViewModels
                analyzeInfo.AnalyseDate = readAnalyzedInfo.AnalyseDate;
                analyzeInfo.ProgrammName = readAnalyzedInfo.ProgrammName;
                analyzeInfo.AnlyseFiles = readAnalyzedInfo.AnlyseFiles;
+           }); 
+        
+        public RelayCommand CompareResultsCommand =>
+           new RelayCommand(obj =>
+           {
+               var compareService = new CompareService();
+               if(!compareService.ProgrammsAreEquals(AnalyzeInfo_1.AnlyseFiles, AnalyzeInfo_2.AnlyseFiles))
+               {
+                   MessageBox.Show(string.Join(";" + Environment.NewLine, compareService.Errors) + Environment.NewLine + "Программы не равны", "Обнаружены различия в программах");
+               }
+               else
+               {
+                   MessageBox.Show("Различия в программах не обнаружены."+ Environment.NewLine + "Программы равны");
+               }
            });
     }
 }
