@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 namespace Chitin.Models
 {
     [Serializable]
-    public class AnalyzeInfo : NotifyPropertyChengedBase
+    public class AnalyzeInfo : NotifyPropertyChangedBase
     {
         private ObservableCollection<FileAnalyseInfo> anlyseFiles;
         private string programmName;

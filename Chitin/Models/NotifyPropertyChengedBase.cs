@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Chitin.Models
 {
-    public class NotifyPropertyChengedBase: INotifyPropertyChanged
+    public class NotifyPropertyChangedBase: INotifyPropertyChanged
     {
         [field: NonSerialized()]
         public event PropertyChangedEventHandler PropertyChanged;
