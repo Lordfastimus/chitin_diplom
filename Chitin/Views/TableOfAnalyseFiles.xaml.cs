@@ -1,4 +1,5 @@
 ﻿using Chitin.Models;
+using ChitinLib;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;

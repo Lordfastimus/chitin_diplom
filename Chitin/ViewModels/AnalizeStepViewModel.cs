@@ -35,14 +35,14 @@ namespace Chitin.ViewModels
             DependencyProperty.Register(nameof(SelectedFolderPath), typeof(string), typeof(AnalizeStepViewModel), new PropertyMetadata(string.Empty));
 
 
-        public ObservableCollection<FileAnalyseInfo> FilesForAnalyse
+        public ObservableCollection<IFileAnalyzeInfo> FilesForAnalyse
         {
-            get { return (ObservableCollection<FileAnalyseInfo>)GetValue(FilesForAnalyseProperty); }
+            get { return (ObservableCollection<IFileAnalyzeInfo>)GetValue(FilesForAnalyseProperty); }
             set { SetValue(FilesForAnalyseProperty, value); }
         }
 
         public static readonly DependencyProperty FilesForAnalyseProperty =
-            DependencyProperty.Register(nameof(FilesForAnalyse), typeof(ObservableCollection<FileAnalyseInfo>), typeof(AnalizeStepViewModel), new PropertyMetadata(new ObservableCollection<FileAnalyseInfo>()));
+            DependencyProperty.Register(nameof(IFileAnalyzeInfo), typeof(ObservableCollection<IFileAnalyzeInfo>), typeof(AnalizeStepViewModel), new PropertyMetadata(new ObservableCollection<IFileAnalyzeInfo>()));
 
         #endregion
 
@@ -60,7 +60,7 @@ namespace Chitin.ViewModels
         private void Clear()
         {
             ProgrammName = string.Empty;
-            FilesForAnalyse = new ObservableCollection<FileAnalyseInfo>();
+            FilesForAnalyse = new ObservableCollection<IFileAnalyzeInfo>();
         }
 
         #region Command
@@ -68,7 +68,8 @@ namespace Chitin.ViewModels
         public RelayCommand CalculateMD5Command =>
            new RelayCommand(obj =>
            {
-               Parallel.ForEach(FilesForAnalyse, new Action<FileAnalyseInfo>(file =>
+               FilesForAnalyse = new ObservableCollection<IFileAnalyzeInfo>(CryptoHelper.CalculateMD5ForFiles(FilesForAnalyse.ToList()));
+               Parallel.ForEach(FilesForAnalyse, new Action<IFileAnalyzeInfo>(file =>
                {
                    var fileInfo = new FileInfo(file.FullName);
                    file.Size = fileInfo.Length;
@@ -101,7 +102,7 @@ namespace Chitin.ViewModels
                 {
                     ProgrammName = ProgrammName,
                     AnalyseDate = DateTime.Now,
-                    AnlyseFiles = FilesForAnalyse
+                    AnlyseFiles = new ObservableCollection<FileAnalyseInfo>(FilesForAnalyse.Select(x=> (FileAnalyseInfo)x))
                 };
 
                 dialog.FileName = Path.Combine(FileHelper.GetAnalyseFolder(), fileInfo.GetFileName());
