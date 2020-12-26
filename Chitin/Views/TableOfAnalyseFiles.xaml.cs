@@ -13,12 +13,12 @@ namespace Chitin.Views
             InitializeComponent();
         }
 
-        public ObservableCollection<FileAnalyseInfo> ItemsSource
+        public ObservableCollection<IFileAnalyzeInfo> ItemsSource
         {
-            get { return (ObservableCollection<FileAnalyseInfo>)GetValue(ItemsSourceProperty); }
+            get { return (ObservableCollection<IFileAnalyzeInfo>)GetValue(ItemsSourceProperty); }
             set { SetValue(ItemsSourceProperty, value); }
         }
         public static readonly DependencyProperty ItemsSourceProperty =
-            DependencyProperty.Register(nameof(ItemsSource), typeof(ObservableCollection<FileAnalyseInfo>), typeof(TableOfAnalyseFiles), new PropertyMetadata(new ObservableCollection<FileAnalyseInfo>()));
+            DependencyProperty.Register(nameof(ItemsSource), typeof(ObservableCollection<IFileAnalyzeInfo>), typeof(TableOfAnalyseFiles), new PropertyMetadata(new ObservableCollection<IFileAnalyzeInfo>()));
     }
 }

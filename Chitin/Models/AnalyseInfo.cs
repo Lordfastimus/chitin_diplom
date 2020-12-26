@@ -1,14 +1,12 @@
 ﻿using ChitinLib;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Chitin.Models
 {
-    [Serializable]
-    public class AnalyzeInfo : NotifyPropertyChangedBase
+	public class AnalyzeInfo : NotifyPropertyChangedBase
     {
-        private ObservableCollection<FileAnalyseInfo> anlyseFiles;
+        private ObservableCollection<IFileAnalyzeInfo> anlyseFiles;
         private string programmName;
         private DateTime? analyseDate;
 
@@ -21,7 +19,7 @@ namespace Chitin.Models
                 OnPropertyChanged(nameof(ProgrammName));
             }
         }
-        public ObservableCollection<FileAnalyseInfo> AnlyseFiles
+        public ObservableCollection<IFileAnalyzeInfo> AnlyseFiles
         {
             get => anlyseFiles;
             set
@@ -38,10 +36,6 @@ namespace Chitin.Models
                 analyseDate = value;
                 OnPropertyChanged(nameof(AnalyseDate));
             }
-        }
-        public string GetFileName()
-        {
-            return ProgrammName + "_" + AnalyseDate?.ToString("dd.MM.yyyy_HH.mm");
-        }
+        }       
     }
 }

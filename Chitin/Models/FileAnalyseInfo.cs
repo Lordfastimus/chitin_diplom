@@ -3,8 +3,7 @@ using System;
 
 namespace Chitin.Models
 {
-    [Serializable]
-    public class FileAnalyseInfo : NotifyPropertyChangedBase, IFileAnalyzeInfo
+   public class FileAnalyseInfo : NotifyPropertyChangedBase, IFileAnalyzeInfo
     {
         private string name;
         private string mD5;
